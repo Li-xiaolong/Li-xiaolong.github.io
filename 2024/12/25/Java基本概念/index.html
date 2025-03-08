@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="XiaoLong Li">
+
+
+
+
+
+<title>Java基本概念 | XL</title>
+
+
+
+    <link rel="icon" href="/2.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">XL&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">XL&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Java基本概念</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">XiaoLong Li</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">December 25, 2024&nbsp;&nbsp;14:31:56</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Java/">Java</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1>Java 基础</h1>
+<h2 id="Java基本概念和名词">Java基本概念和名词</h2>
+<p><img src="/.com//java.png" alt="java"><br>
+<img src="/images/java.png" alt="java"></p>
+<ol>
+<li>
+<p><strong>JDK</strong></p>
+<p>Java Development Kit，Java 软件开发工具包。</p>
+</li>
+<li>
+<p><strong>JRE</strong></p>
+<p>Java Runtime Environment，Java 运行环境。</p>
+</li>
+<li>
+<p><strong>JVM</strong></p>
+<p>Java Virtual Machine，Java 虚拟机。</p>
+</li>
+</ol>
+<ul>
+<li>
+<p><strong>JDK版本</strong></p>
+<ul>
+<li>
+<p><strong>JavaEE</strong></p>
+<p>Java Enterprise Edition，Java 企业版<br>
+使用这种JDK开发J2EE应用程序，从JDK 5.0开始，改名为Java EE</p>
+</li>
+<li>
+<p><strong>JavaSE</strong></p>
+<p>Java Standard Edition，Java 标准版<br>
+是我们通常用的一个版本，从JDK 5.0开始，改名为Java SE。</p>
+</li>
+<li>
+<p><strong>JavaME</strong></p>
+<p>Java Micro Edition，Java 微型版<br>
+主要用于移动设备、嵌入式设备上的java应用程序，从JDK 5.0开始，改名为Java ME。</p>
+</li>
+</ul>
+<p><strong>编译型语言</strong></p>
+<p>将整个代码直接翻译成机器语言（C C++）</p>
+<p><strong>解释型语言</strong></p>
+<p>相当于找个翻译官，不用整个翻译，代码更新一些，翻译一些给机器（例如网页语言，python，对速度要求不高）</p>
+<p>Java是先编译成class文件，再通过解释器进行解释，Java具备编译和解释性</p>
+</li>
+</ul>
+<h2 id="数据类型">数据类型</h2>
+<h3 id="基本类型">基本类型</h3>
+<p>long 类型要在数字后面加L</p>
+<p>float类型要在后面加F</p>
+<p>String不是关键字 是一个类</p>
+<p>布尔值：boolean</p>
+<p>byte：</p>
+<ul>
+<li>byte 数据类型是8位、有符号的，以二进制补码表示的整数；</li>
+<li>最小值是 <strong>-128（-2^7）</strong>；</li>
+<li>最大值是 <strong>127（2^7-1）</strong>；</li>
+<li>默认值是 <strong>0</strong>；</li>
+<li>byte 类型用在大型数组中节约空间，主要代替整数，因为 byte 变量占用的空间只有 int 类型的四分之一；</li>
+</ul>
+<p>short：</p>
+<ul>
+<li>short 数据类型是 16 位、有符号的以二进制补码表示的整数</li>
+<li>最小值是 <strong>-32768（-2^15）</strong>；</li>
+<li>最大值是 <strong>32767（2^15 - 1）</strong>；</li>
+<li>Short 数据类型也可以像 byte 那样节省空间。一个short变量是int型变量所占空间的二分之一；</li>
+<li>默认值是 <strong>0</strong>；</li>
+</ul>
+<p>int:</p>
+<ul>
+<li>int 数据类型是32位、有符号的以二进制补码表示的整数；</li>
+<li>最小值是 <strong>-2,147,483,648（-2^31）</strong>；</li>
+<li>最大值是 <strong>2,147,483,647（2^31 - 1）</strong>；</li>
+<li>一般地整型变量默认为 int 类型；</li>
+<li>默认值是 <strong>0</strong> ；</li>
+</ul>
+<p>long:</p>
+<ul>
+<li>long 数据类型是 64 位、有符号的以二进制补码表示的整数；</li>
+<li>最小值是 <strong>-9,223,372,036,854,775,808（-2^63）</strong>；</li>
+<li>最大值是 <strong>9,223,372,036,854,775,807（2^63 -1）</strong>；</li>
+<li>这种类型主要使用在需要比较大整数的系统上；</li>
+<li>默认值是 <strong>0L</strong>；</li>
+</ul>
+<p>float：</p>
+<ul>
+<li>float 数据类型是单精度、32位、符合IEEE 754标准的浮点数；</li>
+<li>float 在储存大型浮点数组的时候可节省内存空间；</li>
+<li>默认值是 <strong>0.0f</strong>；</li>
+<li>浮点数不能用来表示精确的值，如货币；</li>
+</ul>
+<p>double：</p>
+<ul>
+<li>double 数据类型是双精度、64 位、符合 IEEE 754 标准的浮点数；</li>
+<li>浮点数的默认类型为 double 类型；</li>
+<li>double类型同样不能表示精确的值，如货币；</li>
+<li>默认值是 <strong>0.0d</strong>；</li>
+</ul>
+<p>char:16位</p>
+<p>boolean：1位</p>
+<h3 id="引用类型-reference-type">引用类型(reference type)</h3>
+<p>类 接口 数组</p>
+<h3 id="整数拓展">整数拓展</h3>
+<p>二进制 0b 十进制 八进制0 十六进制0x</p>
+<p>jdk7新特性，数字之间可以用下划线分割方便看  10_000_000</p>
+<h3 id="浮点数拓展">浮点数拓展</h3>
+<p>最好避免完全使用浮点数进行比较</p>
+<p>float double 有限 离散 舍入误差 约等于 接近但不等于</p>
+<p>float f = 0.1f  double d = 0.1  f==d结果为false</p>
+<p>例如银行业务，不用浮点数，会用到一个数学工具类：BigDecimal</p>
+<h3 id="字符拓展">字符拓展</h3>
+<p>所有字符本质还是数字   Unicode编码   2字节   65536个  (int)char强制转换</p>
+<h3 id="转义字符">转义字符</h3>
+<p>\t 制表符 \n换行。。。。</p>
+<h3 id="类型转换">类型转换</h3>
+<p>低--------------------------------------------&gt;&gt;高</p>
+<p>byte，short，char-&gt;int-&gt;long-&gt;float-&gt;double</p>
+<p><strong>从高到低</strong>，需要<strong>强制转换</strong>，因为低的不一定能够表示出来高的。<strong>从低到高</strong>，<strong>自动转换</strong>，不需要强制转换，因为高的能表示低的</p>
+<p>int i = 8;  byte i2 = (byte)i  有的时候 为了计算精度的问题，例如十亿乘10，十亿用int表示不了，需要将其转换为long进行表示，从低到高的强制转换</p>
+<ol>
+<li>不能对布尔值进行转换</li>
+<li>不能把对象类型转换为不相干的类型</li>
+<li>强制转换可能会发生内存溢出及精度问题</li>
+</ol>
+<h2 id="变量">变量</h2>
+<p>局部变量 实例变量：从属于对象，不初始化为默认值，布尔值默认为false</p>
+<p>类变量：加static  从属于类</p>
+<h2 id="常量">常量</h2>
+<p>final字符</p>
+<p>注：修饰符不存在先后顺序，public static final</p>
+<h2 id="运算符">运算符</h2>
+<p><strong>位运算符</strong>: &amp; | ^ ~   &gt;&gt;   &lt;&lt;   &gt;&gt;&gt;</p>
+<pre><code>1. A = 0011 1100
+1. B = 0000 1101
+1. A&amp;B(与)     A|B(或)    A^B(非)   ~B(逆)
+1. 2 * 8 = 2 * 2 * 2 * 2 = 2 &lt;&lt;3(2 左移 3位)  效率比较高
+</code></pre>
+<p>条件运算符  ?   :</p>
+<p>整数运算，当运算数中有long，则结果返回long  否则返回int(不管有没有int)  同理，double float</p>
+<p><strong>java中没有幂运算</strong>  2^3(没有这种操作)</p>
+<p>逻辑运算符：<strong>短路运算</strong>，例如：与操作&amp;&amp;  前面的运算错误的话就不会再执行后面的语句</p>
+<p>字符串连接符：+</p>
+<ol>
+<li>“ ”+10+20    1020</li>
+<li>10+20+“ ”    30</li>
+<li>字符串后面的自动转为字符串  字符串前面的运算还是会正常运算</li>
+</ol>
+<h2 id="JavaDOC">JavaDOC</h2>
+<p>可以加载类上、方法上</p>
+<p>会把java文件编译成JavaDoc文档</p>
+<ol>
+<li>@author</li>
+<li>@version</li>
+<li>@since 指明需要最早使用的jdk版本</li>
+<li>@param</li>
+<li>@return</li>
+<li>@throws</li>
+</ol>
+<h1>Java流程控制</h1>
+<h2 id="Scanner">Scanner</h2>
+<p>Scanner sc = new Scanner(<a target="_blank" rel="noopener" href="http://System.in">System.in</a>)</p>
+<p>用完记得关掉 sc.close()</p>
+<p><strong>sc.next() sc.hasNext()</strong></p>
+<ol>
+<li>一定是要读到有效字符才可以结束输入</li>
+<li>空格后的内容不读取</li>
+<li>hasNext()进行判断时一定要等到输入内容才行</li>
+</ol>
+<p><strong>sc.nextLine() sc.hasNextLine()  用的较多</strong></p>
+<ol>
+<li>以Enter为结束符，返回输入回车之前的所有字符</li>
+<li>hasNextLine进行判断时如果不输入内容就直接回车，就会跳过此判断</li>
+</ol>
+<p>sc.haxNextInt() …</p>
+<ol>
+<li>判断输入是否还有下一个整数，例如，输入一堆东西，只想接收整数(输入的第一个数字要是整数)，就判断输入是否有整数，若有则接收，否则跳过</li>
+</ol>
+<h2 id="顺序结构-选择结构-循环结构">顺序结构 选择结构 循环结构</h2>
+<p>jdkSE 7开始，switch支持字符串类型</p>
+<p>**反编译：**java------&gt;class(字节码文件)--------&gt;反编译成高级汇编语言(IDEA完成的)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">do&#123;</span><br><span class="line"></span><br><span class="line">&#125;while(  );</span><br></pre></td></tr></table></figure>
+<p><strong>增强for循环</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(int number : numbers)&#123;    &#125;//遍历数组</span><br></pre></td></tr></table></figure>
+<h2 id="goto语句">goto语句</h2>
+<p>并未在语言中正式使用，Java没有goto 然后break和continue可以用标签实现goto(了解即可)</p>
+<h1>方法</h1>
+<p>Java方法<strong>只有值传递</strong>，对于基本数据类型，传递的是值的副本，修改副本不影响原变量。对于引用类型，传递的是引用的副本，方法内可以通过引用对象操作引用对象的内容，但无法改变引用对象本身的指向**(因为Java是值传递)。**</p>
+<p><strong>方法重载</strong>：形式参数列表必须不同，方法名字相同，返回类型可相同可不同，仅仅返回类型不同不足以重载。</p>
+<p>**可变参数：**jdk1.5之后支持的，在方法声明中，最后一个参数前加…表示指定一个可变参数，类似于数组。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fun(1,2,3,4,5);</span><br><span class="line">void fun(int ...i)&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h1>数组</h1>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//动态初始化：包含默认初始化</span><br><span class="line">int[] nums;//最好用这种方式定义</span><br><span class="line">nums = new int[10];//Java使用new来创建数组 数组长度是去确定的，一旦创建就定死了</span><br><span class="line"></span><br><span class="line">//静态初始化</span><br><span class="line">int[] arr = &#123;1,2,3&#125;</span><br><span class="line">//数组也是对象，数组元素相当于对象的成员变量</span><br></pre></td></tr></table></figure>
+<h2 id="二维数组">二维数组</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] array = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">2</span>][<span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+<h2 id="稀疏数组">稀疏数组</h2>
+<p>数组----&gt;稀疏数组   稀疏数组------&gt;数组</p>
+<p>第一行存放原始数组多少行，多好列，多少数值不为默认值</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">稀疏数组编号</th>
+<th style="text-align:left">row</th>
+<th style="text-align:left">col</th>
+<th style="text-align:left">val</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">11</td>
+<td style="text-align:left">11</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="栈">**栈 **</h2>
+<ul>
+<li>存放基本变量类型(包含值)，存放引用对象的变量(存放的是这个引用在堆里面具体的值)</li>
+<li>栈不存放方法本身，但与方法调用相关的信息(局部变量、方法参数、返回地址等)会存放在栈中</li>
+</ul>
+<h2 id="堆"><strong>堆</strong></h2>
+<ul>
+<li>存放new的对象和数组，可被被所有线程共享，不会存放别的对象引用。可以理解其中还有一个静态方法区</li>
+</ul>
+<h1>面向对象</h1>
+<h2 id="类的构造器-构造方法">类的构造器(构造方法)</h2>
+<p>一旦定义了<strong>有参构造</strong>，就必须显式定义<strong>无参构造</strong>，否则new Person()会报错，必须传递参数。</p>
+<p>alt+insert 构造器，get set快捷键</p>
+<h2 id="封装-继承-多态">封装  继承  多态</h2>
+<p>封装指属性用private修饰，get set方法也访问，安全</p>
+<p><strong>public &gt; protected &gt; default &gt; private</strong></p>
+<h3 id="super">super</h3>
+<ol>
+<li>super()调用父类的构造方法，必须在构造方法的第一个</li>
+<li>super必须只能出现在子类的方法或者构造方法中</li>
+<li>super()和this()不能同时调用构造方法</li>
+<li>this是本身调用这个对象    super代表父类对象的引用</li>
+<li>this()是本类的构造方法    super()是父类的构造方法</li>
+</ol>
+<h3 id="方法重写">方法重写</h3>
+<p>子类重写父类的方法，修饰符可以扩大，不能缩小,抛出的异常可以被缩小不能被扩大。</p>
+<p>static方法属于类，final private修饰的方法不能被重写</p>
+<h3 id="多态">多态</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一个对象的实际类型是确定的</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Student</span>()</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Person</span>()</span><br><span class="line"><span class="comment">//但是可以指向的引用类型就不确定了  父类的引用指向子类</span></span><br><span class="line"><span class="type">Student</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>()</span><br><span class="line"><span class="type">Person</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>()<span class="comment">//对象能执行哪些方法，主要看对象左边的类型，和右边关系不大 具体执行的方法是执行子类的方法  运行时动态绑定</span></span><br><span class="line">    <span class="comment">///Person父类型，可以指向子类，但是不能调用子类独有的方法</span></span><br></pre></td></tr></table></figure>
+<p>多态存在条件：继承、方法重写、父类引用指向子类对象、Father f1 = new Son();</p>
+<pre><code>多态中成员的特点
+多态成员变量：编译运行看左边
+Fu f=new Zi();
+System.out.println(f.num);//f是Fu中的值，只能取到父中的值
+多态成员方法：编译看左边，运行看右边
+Fu f1=new Zi();
+System.out.println(f1.show());//f1的门面类型是Fu,但实际类型是Zi,所以调用的是重写后的方法。
+</code></pre>
+<h4 id="instanceof">instanceof</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//左边是对象，右边是类</span></span><br><span class="line"><span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">person <span class="keyword">instanceof</span> Student<span class="comment">//左边显式声明的类型与右边操作元必须是同种类或存在继承关系，也就是说需要位于同一个继承树，否则会编译错误  结果为true还是false看右边，这里new Student()，所以person instance of Student 为true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">把子类转换为父类  向上转型  <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();  person不能执行子类Student中独有的方法，丢失子类中的独有方法</span><br><span class="line">把父类转换为子类  向下转型  <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span> Student(person);  需要强制转换(可能会有所丢失)，现在student可以执行Student中独有的方法</span><br></pre></td></tr></table></figure>
+<h4 id="代码块">代码块</h4>
+<p>静态代码块，一个类只加载一次，匿名代码块(无static修饰)，创建对象时加载，静态代码块先于匿名代码块先于构造器执行</p>
+<h2 id="抽象类">抽象类</h2>
+<p>abstract抽象类可以有普通方法，抽象方法只能在抽象类中，抽象类不能实例化。子类若不是抽象类，必须实现父类抽象类的抽象方法。</p>
+<h2 id="接口">接口</h2>
+<p>interface接口中的方法全是public abstract  可以继承多个接口  implements实现接口，方法必须全部重写  接口中也只能有常量 public static final</p>
+<p>在 Java 中，<strong>接口类型可用来声明一个变量</strong>，他们可以成为一个空指针，或是被绑定在一个以此接口实现的对象。</p>
+<h2 id="内部类">内部类</h2>
+<ol>
+<li>内部类  可以获取外部类的私有变量、方法</li>
+<li>一个Java文件只能有一个public类，但可以有多个class类</li>
+<li>局部内部类（放在方法中）  静态内部类  <strong>匿名内部类</strong>（没有名字，用于快速实现接口或者继承类，用于那些只需要一次使用的的场景。例如事件监听、回调等等）…</li>
+<li>…</li>
+</ol>
+<h1>异常</h1>
+<p><img src="/images/exception.png" alt="exception"></p>
+<ul>
+<li>运行时异常RuntimeException，通常表示开发者未正确处理代码中的潜在问题，程序员在编译时无需显式处理(通过 <code>try-catch</code> 或 <code>throws</code> 声明)</li>
+<li>检查性异常，例如打开一个不存在的文件，是程序员无法预见的，程序员无需显示处理(使用 <code>try-catch</code> 块或在方法签名中声明 <code>throws</code>)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;nonexistent.txt&quot;</span>);</span><br><span class="line">    <span class="type">FileReader</span> <span class="variable">reader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileReader</span>(file); <span class="comment">// IOException</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;File not found!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>error不属于异常，通常是致命的错误，是程序无法处理的，一般由jvm导致。exception时是程序可处理的异常</li>
+</ul>
+<p><strong>throw</strong>抛出异常是写在方法中的，如果方法自身解决不了就抛出去(在方法上写上<strong>throws</strong>)，让调用方法的代码块来解决这个异常</p>
+<p><strong>finally</strong>通常用来释放占用的资源</p>
+<p>crlt + alt + t 快捷键</p>
+<p><strong>自定义异常</strong></p>
+<p>写一个类继承Exception，用的不多</p>
+<h1>Number&amp;Math类</h1>
+<p>所有的包装类**（Integer、Long、Byte、Double、Float、Short）**都是抽象类 Number 的子类。Boolean和Character是直接继承的Object类。</p>
+<h2 id="装箱拆箱">装箱拆箱</h2>
+<p>装箱是将 <strong>基本数据类型</strong> 转换为其对应的 <strong>包装类对象</strong> 的过程。</p>
+<p>拆箱是将 <strong>包装类对象</strong> 转换为对应的 <strong>基本数据类型</strong> 的过程。</p>
+<p>Java1.5之后引入了自动装箱拆箱</p>
+<p><strong>为什么需要装箱和拆箱？</strong></p>
+<ul>
+<li>
+<p><strong>集合框架中的要求</strong>：Java 的集合框架（如 <code>ArrayList</code>、<code>HashMap</code>）只能存储对象，而不能直接存储基本数据类型。因此，需要使用包装类来存储基本数据类型的值。</p>
+</li>
+<li>
+<p><strong>支持对象操作</strong>：包装类提供了基本数据类型的许多额外功能，例如常见的数学方法、转换方法、比较方法等。</p>
+</li>
+</ul>
+<h1>StringBuffer &amp; StringBuilder</h1>
+<p>和 String 类不同的是，StringBuffer 和 StringBuilder 类的对象能够被多次的修改，并且不产生新的未使用对象。</p>
+<p>StringBuilder 类在 Java 5 中被提出，它和 StringBuffer 之间的最大不同在于 StringBuilder 的方法不是线程安全的（不能同步访问）。</p>
+<p>由于 StringBuilder 相较于 StringBuffer 有速度优势，所以多数情况下建议使用 StringBuilder 类。</p>
+<h1>数据结构</h1>
+<ul>
+<li>
+<p>ArrayList &amp;LinkedList</p>
+</li>
+<li>
+<p>集合（Sets）</p>
+<ul>
+<li>HashSet</li>
+<li>TreeSet</li>
+</ul>
+</li>
+<li>
+<p>映射（Maps）</p>
+<ul>
+<li>HashMap</li>
+<li>TreeMap</li>
+</ul>
+</li>
+<li>
+<p>栈（Stack）</p>
+</li>
+<li>
+<p>队列（Queue）</p>
+</li>
+<li>
+<p>Queue 接口</p>
+</li>
+<li>
+<p>堆（Heap）</p>
+</li>
+<li>
+<p>树（Trees）</p>
+</li>
+<li>
+<p>图（Graphs）</p>
+</li>
+</ul>
+<h1>HashMap &amp; HashSet</h1>
+<p>HashMap 是一个散列表，它存储的内容是键值对(key-value)映射。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">HashMap&lt;Integer, String&gt; Sites = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;Integer, String&gt;();</span><br><span class="line"><span class="comment">// 添加键值对</span></span><br><span class="line">Sites.put(<span class="number">1</span>, <span class="string">&quot;Google&quot;</span>);</span><br><span class="line">Sites.put(<span class="number">2</span>, <span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">Sites.put(<span class="number">3</span>, <span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">Sites.put(<span class="number">4</span>, <span class="string">&quot;Zhihu&quot;</span>);</span><br><span class="line"></span><br><span class="line">HashSet&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;String&gt;();</span><br><span class="line">sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">sites.add(<span class="string">&quot;Zhihu&quot;</span>);</span><br><span class="line">sites.add(<span class="string">&quot;Runoob&quot;</span>);  <span class="comment">// 重复的元素不会被添加</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1>Iterator</h1>
+<p>最常用的三个方法</p>
+<ol>
+<li><strong>next()</strong> - 返回迭代器的下一个元素，并将迭代器的指针移到下一个位置。</li>
+<li><strong>hasNext()</strong> - 用于判断集合中是否还有下一个元素可以访问。</li>
+<li><strong>remove()</strong> - 从集合中删除迭代器最后访问的元素（可选操作）。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建集合</span></span><br><span class="line">ArrayList&lt;String&gt; sites = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">sites.add(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">sites.add(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">sites.add(<span class="string">&quot;Taobao&quot;</span>);</span><br><span class="line">sites.add(<span class="string">&quot;Zhihu&quot;</span>);</span><br><span class="line"><span class="comment">// 获取迭代器</span></span><br><span class="line">Iterator&lt;String&gt; it = sites.iterator();</span><br><span class="line"><span class="comment">// 输出集合中的第一个元素</span></span><br><span class="line">System.out.println(it.next());</span><br></pre></td></tr></table></figure>
+<h1>泛型</h1>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GenericMethodTest</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="comment">// 泛型方法 printArray                         </span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> &lt; E &gt; <span class="keyword">void</span> <span class="title function_">printArray</span><span class="params">( E[] inputArray )</span></span><br><span class="line">   &#123;</span><br><span class="line">      <span class="comment">// 输出数组元素            </span></span><br><span class="line">         <span class="keyword">for</span> ( E element : inputArray )&#123;        </span><br><span class="line">            System.out.printf( <span class="string">&quot;%s &quot;</span>, element );</span><br><span class="line">         &#125;</span><br><span class="line">         System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">( String args[] )</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 创建不同类型数组： Integer, Double 和 Character</span></span><br><span class="line">        Integer[] intArray = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">        Double[] doubleArray = &#123; <span class="number">1.1</span>, <span class="number">2.2</span>, <span class="number">3.3</span>, <span class="number">4.4</span> &#125;;</span><br><span class="line">        Character[] charArray = &#123; <span class="string">&#x27;H&#x27;</span>, <span class="string">&#x27;E&#x27;</span>, <span class="string">&#x27;L&#x27;</span>, <span class="string">&#x27;L&#x27;</span>, <span class="string">&#x27;O&#x27;</span> &#125;;</span><br><span class="line"> </span><br><span class="line">        System.out.println( <span class="string">&quot;整型数组元素为:&quot;</span> );</span><br><span class="line">        printArray( intArray  ); <span class="comment">// 传递一个整型数组</span></span><br><span class="line"> </span><br><span class="line">        System.out.println( <span class="string">&quot;\n双精度型数组元素为:&quot;</span> );</span><br><span class="line">        printArray( doubleArray ); <span class="comment">// 传递一个双精度型数组</span></span><br><span class="line"> </span><br><span class="line">        System.out.println( <span class="string">&quot;\n字符型数组元素为:&quot;</span> );</span><br><span class="line">        printArray( charArray ); <span class="comment">// 传递一个字符型数组</span></span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="泛型类">泛型类</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Box</span>&lt;T&gt; &#123;</span><br><span class="line">  <span class="keyword">private</span> T t;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">add</span><span class="params">(T t)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.t = t;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> T <span class="title function_">get</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> t;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    Box&lt;Integer&gt; integerBox = <span class="keyword">new</span> <span class="title class_">Box</span>&lt;Integer&gt;();</span><br><span class="line">    Box&lt;String&gt; stringBox = <span class="keyword">new</span> <span class="title class_">Box</span>&lt;String&gt;();</span><br><span class="line">    integerBox.add(<span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">10</span>));</span><br><span class="line">    stringBox.add(<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;菜鸟教程&quot;</span>));</span><br><span class="line">    System.out.printf(<span class="string">&quot;整型值为 :%d\n\n&quot;</span>, integerBox.get());</span><br><span class="line">    System.out.printf(<span class="string">&quot;字符串为 :%s\n&quot;</span>, stringBox.get());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="类型通配符">类型通配符</h2>
+<p>类型通配符一般是使用 <strong>?</strong> 代替具体的类型参数。例如 <strong>List&lt;?&gt;</strong> 在逻辑上是 <strong>List<String>,List<Integer></Integer></String></strong> 等所有 <strong>List&lt;具体类型实参&gt;</strong> 的父类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">getData</span><span class="params">(List&lt;?&gt; data)</span> &#123;</span><br><span class="line">  System.out.println(<span class="string">&quot;data :&quot;</span> + data.get(<span class="number">0</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">getUperNumber</span><span class="params">(List&lt;? extends Number&gt; data)</span> &#123;<span class="comment">//extends表示只接受Number及其下层子类类型</span></span><br><span class="line">      System.out.println(<span class="string">&quot;data :&quot;</span> + data.get(<span class="number">0</span>));</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h1>Lambda表达式</h1>
+<h2 id="函数式接口-Functional-Interface">函数式接口 Functional Interface</h2>
+<p>任何接口，如果只包含一个抽象方法，那么它就是一个函数式接口，对于函数式接口，我们可以通过lambda表达式来创建该接口的对象。Runnable接口就是函数式接口，只有run一个函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Java8Tester</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span>&#123;</span><br><span class="line">        <span class="type">Java8Tester</span> <span class="variable">tester</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Java8Tester</span>();</span><br><span class="line">        <span class="comment">// 类型声明</span></span><br><span class="line">        <span class="type">MathOperation</span> <span class="variable">addition</span> <span class="operator">=</span> (<span class="type">int</span> a, <span class="type">int</span> b) -&gt; a + b;</span><br><span class="line">        <span class="comment">//MathOperation是一个接口，变量 addition 被赋值为这个 Lambda 表达式，它实际上是 MathOperation 接口的一个实例。addition 变量就成为了一个可以执行加法运算的 MathOperation 对象。</span></span><br><span class="line">        <span class="comment">//使用Lambda表达式实现了MathOperation接口的operation方法</span></span><br><span class="line">        <span class="comment">// 不用类型声明</span></span><br><span class="line">        <span class="type">MathOperation</span> <span class="variable">subtraction</span> <span class="operator">=</span> (a, b) -&gt; a - b;</span><br><span class="line">        <span class="comment">// 大括号中的返回语句</span></span><br><span class="line">        <span class="type">MathOperation</span> <span class="variable">multiplication</span> <span class="operator">=</span> (<span class="type">int</span> a, <span class="type">int</span> b) -&gt; &#123; <span class="keyword">return</span> a * b; &#125;;</span><br><span class="line">        <span class="comment">// 没有大括号及返回语句</span></span><br><span class="line">        <span class="type">MathOperation</span> <span class="variable">division</span> <span class="operator">=</span> (<span class="type">int</span> a, <span class="type">int</span> b) -&gt; a / b;</span><br><span class="line">        System.out.println(<span class="string">&quot;10 + 5 = &quot;</span> + tester.operate(<span class="number">10</span>, <span class="number">5</span>, addition));</span><br><span class="line">        System.out.println(<span class="string">&quot;10 - 5 = &quot;</span> + tester.operate(<span class="number">10</span>, <span class="number">5</span>, subtraction));</span><br><span class="line">        System.out.println(<span class="string">&quot;10 x 5 = &quot;</span> + tester.operate(<span class="number">10</span>, <span class="number">5</span>, multiplication));</span><br><span class="line">        System.out.println(<span class="string">&quot;10 / 5 = &quot;</span> + tester.operate(<span class="number">10</span>, <span class="number">5</span>, division));</span><br><span class="line">        <span class="comment">// 不用括号</span></span><br><span class="line">        <span class="type">GreetingService</span> <span class="variable">greetService1</span> <span class="operator">=</span> message -&gt;</span><br><span class="line">                System.out.println(<span class="string">&quot;Hello &quot;</span> + message);</span><br><span class="line">        <span class="comment">// 用括号</span></span><br><span class="line">        <span class="type">GreetingService</span> <span class="variable">greetService2</span> <span class="operator">=</span> (message) -&gt;</span><br><span class="line">                System.out.println(<span class="string">&quot;Hello &quot;</span> + message);</span><br><span class="line">        greetService1.sayMessage(<span class="string">&quot;Runoob&quot;</span>);</span><br><span class="line">        greetService2.sayMessage(<span class="string">&quot;Google&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">interface</span> <span class="title class_">MathOperation</span> &#123;<span class="comment">//函数式接口</span></span><br><span class="line">        <span class="type">int</span> <span class="title function_">operation</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">interface</span> <span class="title class_">GreetingService</span> &#123;</span><br><span class="line">        <span class="keyword">void</span> <span class="title function_">sayMessage</span><span class="params">(String message)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">operate</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b, MathOperation mathOperation)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mathOperation.operation(a, b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>得空自己学一下</h1>
+<p><img src="/.com//normalClass.png" alt="常用类"></p>
+<p><img src="/images/normalClass.png" alt="常用类"></p>
+<p><img src="/.com//collectFramework.png" alt="集成框架"></p>
+<p><img src="/images/collectFramework.png" alt="集成框架"></p>
+<p><img src="/.com//IO.png" alt="IO"></p>
+<p><img src="/images/IO.png" alt="IO"></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>XiaoLong Li</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2024/12/25/Java%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">http://example.com/2024/12/25/Java%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Java/"># Java</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/12/28/javaGUI/">javaGUI</a>
+            
+            
+            <a class="next" rel="next" href="/2024/12/25/hello-world/">Hello World</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© XiaoLong Li | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
