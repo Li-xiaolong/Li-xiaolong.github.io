@@ -221,15 +221,13 @@
         </header>
 
         <div class="post-content">
-            <h1>基本语法</h1>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">单行注释：--</span><br><span class="line">多行注释：</span><br><span class="line">/*</span><br><span class="line"></span><br><span class="line">*/</span><br><span class="line">如果表名或者字段名是一个特殊字符，就需要带 ` `</span><br><span class="line">例如：`user`</span><br></pre></td></tr></table></figure>
-<h1>操作数据库</h1>
-<h2 id="数据类型">数据类型</h2>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">字符串一般用varchar（可变字符串）和text（文本串）</span><br><span class="line">时间日期：date  time  datetime  timestamp（时间戳，从1970.1.1 到现在的毫秒数）</span><br></pre></td></tr></table></figure>
-<h2 id="创建数据库、表">创建数据库、表</h2>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show creat database school --查看创建数据的语句</span><br><span class="line">desc student  ---显示表的结构</span><br></pre></td></tr></table></figure>
-<h2 id="数据库引擎">数据库引擎</h2>
-<table>
+            <h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">单行注释：--</span><br><span class="line">多行注释：</span><br><span class="line">/*</span><br><span class="line"></span><br><span class="line">*/</span><br><span class="line">如果表名或者字段名是一个特殊字符，就需要带 ` `</span><br><span class="line">例如：`user`</span><br></pre></td></tr></table></figure>
+
+<h1 id="操作数据库"><a href="#操作数据库" class="headerlink" title="操作数据库"></a>操作数据库</h1><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">字符串一般用varchar（可变字符串）和text（文本串）</span><br><span class="line">时间日期：date  time  datetime  timestamp（时间戳，从1970.1.1 到现在的毫秒数）</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建数据库、表"><a href="#创建数据库、表" class="headerlink" title="创建数据库、表"></a>创建数据库、表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show creat database school --查看创建数据的语句</span><br><span class="line">desc student  ---显示表的结构</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库引擎"><a href="#数据库引擎" class="headerlink" title="数据库引擎"></a>数据库引擎</h2><table>
 <thead>
 <tr>
 <th></th>
@@ -237,8 +235,7 @@
 <th>INNODB</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>事务支持</td>
 <td>不支持</td>
 <td>支持</td>
@@ -263,24 +260,19 @@
 <td>较小</td>
 <td>较大(2倍)</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <ul>
-<li>
-<p>MYISAM：节约空间，速度较快，早些年使用</p>
+<li><p>MYISAM：节约空间，速度较快，早些年使用</p>
 </li>
-<li>
-<p>INNODB：安全性高，事务处理，多表多用户操作</p>
+<li><p>INNODB：安全性高，事务处理，多表多用户操作</p>
 </li>
 </ul>
-<h1>MySQL数据管理</h1>
-<h2 id="删除-Delete-和-truncate的区别">删除  Delete 和 truncate的区别</h2>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">delete from table</span><br><span class="line">truncate table</span><br></pre></td></tr></table></figure>
+<h1 id="MySQL数据管理"><a href="#MySQL数据管理" class="headerlink" title="MySQL数据管理"></a>MySQL数据管理</h1><h2 id="删除-Delete-和-truncate的区别"><a href="#删除-Delete-和-truncate的区别" class="headerlink" title="删除  Delete 和 truncate的区别"></a>删除  Delete 和 truncate的区别</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">delete from table</span><br><span class="line">truncate table</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>相同点：等删除表数据，都不会删除表结构</li>
-<li>不同点：
-<ul>
-<li>truncate重新设置自增列，计数器归零</li>
+<li>不同点：<ul>
+<li>truncate重新设置自增列，计数器归零   </li>
 <li>truncate不会影响事务</li>
 </ul>
 </li>
@@ -290,24 +282,21 @@
 <li>INNODB  自增列会从1开始（存在内存中，断电即失）</li>
 <li>MYISAM 继续从上一个自增量开始（存在磁盘文件中，不会丢失）</li>
 </ul>
-<h1>查询语句DQL</h1>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-- 顺序很重要</span><br><span class="line">SELECT [ALL | DISTINCT]</span><br><span class="line">&#123;* | table.* | [table.field1[as alias1][,table.field2[as alias2]][,...]]&#125;</span><br><span class="line">FROM table_name [as table_alias]</span><br><span class="line">  [left | right | inner join table_name2]  -- 联合查询</span><br><span class="line">  [WHERE ...]  -- 指定结果需满足的条件</span><br><span class="line">  [GROUP BY ...]  -- 指定结果按照哪几个字段来分组</span><br><span class="line">  [HAVING]  -- 过滤分组的记录必须满足的次要条件</span><br><span class="line">  [ORDER BY ...]  -- 指定查询记录按一个或多个条件排序</span><br><span class="line">  [LIMIT &#123;[offset,]row_count | row_countOFFSET offset&#125;];</span><br><span class="line">   -- 指定查询的记录从哪条至哪条</span><br></pre></td></tr></table></figure>
+<h1 id="查询语句DQL"><a href="#查询语句DQL" class="headerlink" title="查询语句DQL"></a>查询语句DQL</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-- 顺序很重要</span><br><span class="line">SELECT [ALL | DISTINCT]</span><br><span class="line">&#123;* | table.* | [table.field1[as alias1][,table.field2[as alias2]][,...]]&#125;</span><br><span class="line">FROM table_name [as table_alias]</span><br><span class="line">  [left | right | inner join table_name2]  -- 联合查询</span><br><span class="line">  [WHERE ...]  -- 指定结果需满足的条件</span><br><span class="line">  [GROUP BY ...]  -- 指定结果按照哪几个字段来分组</span><br><span class="line">  [HAVING]  -- 过滤分组的记录必须满足的次要条件</span><br><span class="line">  [ORDER BY ...]  -- 指定查询记录按一个或多个条件排序</span><br><span class="line">  [LIMIT &#123;[offset,]row_count | row_countOFFSET offset&#125;];</span><br><span class="line">   -- 指定查询的记录从哪条至哪条</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">-- 函数 concat 拼接字符串</span><br><span class="line">select concat(&#x27;姓名&#x27;,studentname) as 新名字 from student</span><br><span class="line"></span><br><span class="line">-- 模糊查询：like</span><br><span class="line">% (代表0到任意个字符) _ (一个字符)</span><br><span class="line">SELECT studentno,studentname FROM student</span><br><span class="line">WHERE studentname LIKE &#x27;刘%&#x27;;</span><br><span class="line"></span><br><span class="line">-- 查询姓刘的同学,后面只有两个字的</span><br><span class="line">SELECT studentno,studentname FROM student</span><br><span class="line">WHERE studentname LIKE &#x27;刘__&#x27;;</span><br><span class="line"></span><br><span class="line">-- 查询姓名中含有 嘉 字的</span><br><span class="line">SELECT studentno,studentname FROM student</span><br><span class="line">WHERE studentname LIKE &#x27;%嘉%&#x27;;</span><br><span class="line"></span><br><span class="line">-- 分页</span><br><span class="line">limit 0,5  每页五个数据，从第一个数据开始查</span><br><span class="line">/*</span><br><span class="line">推导:</span><br><span class="line">   第一页 : limit 0,5</span><br><span class="line">   第二页 : limit 5,5</span><br><span class="line">   第三页 : limit 10,5</span><br><span class="line">   ......</span><br><span class="line">   第N页 : limit (pageNo-1)*pageSzie,pageSzie</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">-- 子查询</span><br><span class="line">在查询语句中的WHERE条件子句中,又嵌套了另一个查询语句</span><br><span class="line"></span><br><span class="line">-- 分组  HAVING</span><br><span class="line"> -- 查询不同课程的平均分,最高分,最低分</span><br><span class="line"> -- 前提:根据不同的课程进行分组</span><br><span class="line"> </span><br><span class="line"> SELECT subjectname,AVG(studentresult) AS 平均分,MAX(StudentResult) AS 最高分,MIN(StudentResult) AS 最低分</span><br><span class="line"> FROM result AS r</span><br><span class="line"> INNER JOIN `subject` AS s</span><br><span class="line"> ON r.subjectno = s.subjectno</span><br><span class="line"> GROUP BY r.subjectno</span><br><span class="line"> HAVING 平均分&gt;80;</span><br><span class="line"> </span><br><span class="line"> /*</span><br><span class="line"> where写在group by前面.</span><br><span class="line"> 要是放在分组后面的筛选要使用HAVING..</span><br><span class="line"> WHERE 用于分组前的行级过滤，HAVING 用于分组后的组级过滤。</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
-<h1>事务和索引</h1>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">-- 使用set语句来改变自动提交模式</span><br><span class="line">SET autocommit = 0;   /*关闭*/</span><br><span class="line">SET autocommit = 1;   /*开启*/</span><br><span class="line">-- 注意:</span><br><span class="line">--- 1.MySQL中默认是自动提交</span><br><span class="line">--- 2.使用事务时应先关闭自动提交</span><br><span class="line">-- 开始一个事务,标记事务的起始点</span><br><span class="line">START TRANSACTION  </span><br><span class="line">insert update.......事务内容</span><br><span class="line">-- 提交一个事务给数据库</span><br><span class="line">COMMIT</span><br><span class="line">-- 将事务回滚,数据回到本次事务的初始状态</span><br><span class="line">ROLLBACK</span><br><span class="line">-- 还原MySQL数据库的自动提交</span><br><span class="line">SET autocommit =1;</span><br><span class="line">-- 保存点</span><br><span class="line">SAVEPOINT 保存点名称 -- 设置一个事务保存点</span><br><span class="line">ROLLBACK TO SAVEPOINT 保存点名称 -- 回滚到保存点</span><br><span class="line">RELEASE SAVEPOINT 保存点名称 -- 删除保存点</span><br></pre></td></tr></table></figure>
-<h2 id="索引">索引</h2>
-<blockquote>
+
+<h1 id="事务和索引"><a href="#事务和索引" class="headerlink" title="事务和索引"></a>事务和索引</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">-- 使用set语句来改变自动提交模式</span><br><span class="line">SET autocommit = 0;   /*关闭*/</span><br><span class="line">SET autocommit = 1;   /*开启*/</span><br><span class="line">-- 注意:</span><br><span class="line">--- 1.MySQL中默认是自动提交</span><br><span class="line">--- 2.使用事务时应先关闭自动提交</span><br><span class="line">-- 开始一个事务,标记事务的起始点</span><br><span class="line">START TRANSACTION  </span><br><span class="line">insert update.......事务内容</span><br><span class="line">-- 提交一个事务给数据库</span><br><span class="line">COMMIT</span><br><span class="line">-- 将事务回滚,数据回到本次事务的初始状态</span><br><span class="line">ROLLBACK</span><br><span class="line">-- 还原MySQL数据库的自动提交</span><br><span class="line">SET autocommit =1;</span><br><span class="line">-- 保存点</span><br><span class="line">SAVEPOINT 保存点名称 -- 设置一个事务保存点</span><br><span class="line">ROLLBACK TO SAVEPOINT 保存点名称 -- 回滚到保存点</span><br><span class="line">RELEASE SAVEPOINT 保存点名称 -- 删除保存点</span><br></pre></td></tr></table></figure>
+
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><blockquote>
 <p>分类</p>
 </blockquote>
 <ul>
-<li>
-<p>主键索引 (Primary Key)</p>
+<li><p>主键索引 (Primary Key)</p>
 </li>
-<li>
-<p>唯一索引 (Unique)</p>
+<li><p>唯一索引 (Unique)</p>
 </li>
-<li>
-<p>常规索引 (Index)</p>
+<li><p>常规索引 (Index)</p>
 <p>作用 : 快速定位特定数据</p>
 <p>注意 :</p>
 <ul>
@@ -316,8 +305,7 @@
 <li>不宜添加太多常规索引,影响数据的插入,删除和修改操作</li>
 </ul>
 </li>
-<li>
-<p>全文索引 (FullText)</p>
+<li><p>全文索引 (FullText)</p>
 <p>作用 : 快速定位特定数据</p>
 <p>注意 :</p>
 <ul>
@@ -340,47 +328,57 @@
 <p>索引的数据结构</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- 我们可以在创建上述索引的时候，为其指定索引类型，分两类</span><br><span class="line">hash类型的索引：查询单条快，范围查询慢</span><br><span class="line">btree类型的索引：b+树，层数越多，数据量指数级增长（我们就用它，因为innodb默认支持它）</span><br></pre></td></tr></table></figure>
-<h1>权限管理和备份</h1>
-<h2 id="mysqldump">mysqldump</h2>
-<p>作用 :</p>
+
+<h1 id="权限管理和备份"><a href="#权限管理和备份" class="headerlink" title="权限管理和备份"></a>权限管理和备份</h1><h2 id="mysqldump"><a href="#mysqldump" class="headerlink" title="mysqldump"></a>mysqldump</h2><p>作用 :</p>
 <ul>
 <li>转储数据库</li>
 <li>搜集数据库进行备份</li>
 <li>将数据转移到另一个SQL服务器,不一定是MySQL服务器</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-- 导出</span><br><span class="line">1. 导出一张表 -- mysqldump -uroot -p123456 school student &gt;D:/a.sql</span><br><span class="line">　　mysqldump -u用户名 -p密码 库名 表名 &gt; 文件名(D:/a.sql)</span><br><span class="line">2. 导出多张表 -- mysqldump -uroot -p123456 school student result &gt;D:/a.sql</span><br><span class="line">　　mysqldump -u用户名 -p密码 库名 表1 表2 表3 &gt; 文件名(D:/a.sql)</span><br><span class="line">3. 导出所有表 -- mysqldump -uroot -p123456 school &gt;D:/a.sql</span><br><span class="line">　　mysqldump -u用户名 -p密码 库名 &gt; 文件名(D:/a.sql)</span><br><span class="line">4. 导出一个库 -- mysqldump -uroot -p123456 -B school &gt;D:/a.sql</span><br><span class="line">　　mysqldump -u用户名 -p密码 -B 库名 &gt; 文件名(D:/a.sql)</span><br><span class="line"></span><br><span class="line">可以-w携带备份条件</span><br><span class="line"></span><br><span class="line">-- 导入</span><br><span class="line">1. 在登录mysql的情况下：-- source D:/a.sql</span><br><span class="line">　　source 备份文件</span><br><span class="line">2. 在不登录的情况下</span><br><span class="line">　　mysql -u用户名 -p密码 库名 &lt; 备份文件</span><br></pre></td></tr></table></figure>
-<h1>JDBC</h1>
-<p><strong>JDBC（Java Database Connectivity）</strong> 是 Java 语言中用于连接和操作数据库的标准 API（应用程序接口）。它提供了一种统一的方式，让 Java 程序能够与多种关系型数据库（如 MySQL、Oracle、PostgreSQL 等）进行交互，而无需关心底层数据库的具体实现细节。</p>
+
+<h1 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h1><p><strong>JDBC（Java Database Connectivity）</strong> 是 Java 语言中用于连接和操作数据库的标准 API（应用程序接口）。它提供了一种统一的方式，让 Java 程序能够与多种关系型数据库（如 MySQL、Oracle、PostgreSQL 等）进行交互，而无需关心底层数据库的具体实现细节。</p>
 <p><strong>MyBatis对 JDBC 进行了高级封装，简化了开发流程</strong></p>
 <ul>
 <li><strong>底层依赖</strong>：MyBatis 最终仍通过 JDBC 驱动与数据库交互，所有 SQL 操作最终都会转换为 JDBC 的 <code>Connection</code>、<code>Statement</code>、<code>ResultSet</code> 等对象的操作。</li>
 <li><strong>封装优化</strong>：MyBatis 隐藏了 JDBC 的繁琐细节（如手动管理连接、拼接参数、解析结果集），开发者只需关注 SQL 和对象映射。</li>
 </ul>
-<blockquote>
-<h2 id="JDBC-的核心作用">JDBC 的核心作用</h2>
-</blockquote>
-<ol>
+<h2 id="JDBC-的核心作用"><a href="#JDBC-的核心作用" class="headerlink" title="JDBC 的核心作用"></a>JDBC 的核心作用</h2><ol>
 <li><strong>连接数据库</strong>：通过驱动（Driver）建立 Java 应用与数据库之间的连接。</li>
 <li><strong>执行 SQL 语句</strong>：发送 SQL 命令（如查询、插入、更新、删除）到数据库。</li>
 <li><strong>处理结果</strong>：获取并解析数据库返回的查询结果。</li>
 <li><strong>事务管理</strong>：支持对数据库事务（提交、回滚）的控制。</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 加载数据库驱动（新版可省略此步骤，通过 SPI 自动加载）</span></span><br><span class="line">Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line"><span class="comment">// 2. 建立数据库连接</span></span><br><span class="line"><span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/mydb?useSSL=false&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;123456&quot;</span>;</span><br><span class="line"><span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> DriverManager.getConnection(url, user, password);</span><br><span class="line"><span class="comment">// 3. 创建 Statement 或 PreparedStatement 对象</span></span><br><span class="line"><span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> conn.createStatement();</span><br><span class="line"><span class="comment">// 4. 执行 SQL 查询</span></span><br><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;SELECT id, name FROM users WHERE age &gt; 18&quot;</span>;</span><br><span class="line"><span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> stmt.executeQuery(sql);</span><br><span class="line"><span class="comment">// 5. 处理结果集</span></span><br><span class="line"><span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">id</span> <span class="operator">=</span> rs.getInt(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;ID: &quot;</span> + id + <span class="string">&quot;, Name: &quot;</span> + name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 6. 释放资源（反向关闭）</span></span><br><span class="line">rs.close();</span><br><span class="line">stmt.close();</span><br><span class="line">conn.close();</span><br></pre></td></tr></table></figure>
-<h2 id="SQL注入">SQL注入</h2>
-<p>SQL 注入（SQL Injection）是一种利用应用程序未正确过滤用户输入的安全漏洞，攻击者通过注入恶意 SQL 代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 加载数据库驱动（新版可省略此步骤，通过 SPI 自动加载）</span></span><br><span class="line">Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line"><span class="comment">// 2. 建立数据库连接</span></span><br><span class="line"><span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/mydb?useSSL=false&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;123456&quot;</span>;</span><br><span class="line"><span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> DriverManager.getConnection(url, user, password);</span><br><span class="line"><span class="comment">// 3. 创建 Statement 或 PreparedStatement 对象</span></span><br><span class="line"><span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> conn.createStatement();</span><br><span class="line"><span class="comment">// 4. 执行 SQL 查询</span></span><br><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;SELECT id, name FROM users WHERE age &gt; 18&quot;</span>;</span><br><span class="line"><span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> stmt.executeQuery(sql);</span><br><span class="line"><span class="comment">// 5. 处理结果集</span></span><br><span class="line"><span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">id</span> <span class="operator">=</span> rs.getInt(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;ID: &quot;</span> + id + <span class="string">&quot;, Name: &quot;</span> + name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 6. 释放资源（反向关闭，先开后关）</span></span><br><span class="line">rs.close();</span><br><span class="line">stmt.close();</span><br><span class="line">conn.close();</span><br></pre></td></tr></table></figure>
+
+<h2 id="JDBC操作数据库"><a href="#JDBC操作数据库" class="headerlink" title="JDBC操作数据库"></a>JDBC操作数据库</h2><p><strong>增删改需要事务提交(commit)，JDBC默认自动提交事务</strong></p>
+<p>JDBC一般是在dao(mapper)层定义方法，然后在接口实现类impl中实现接口的方法。MyBatis是使用xml文件映射而不是使用impl实现类。</p>
+<ul>
+<li>接口Emp_dao中定义方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加用户</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">addUser</span><span class="params">(Emp emp)</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接口实现类Emp_impl中实现接口的方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加用户信息的实现类</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">addUser</span><span class="params">(Emp emp)</span> &#123;</span><br><span class="line">    .......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><p>SQL 注入（SQL Injection）是一种利用应用程序未正确过滤用户输入的安全漏洞，攻击者通过注入恶意 SQL 代码</p>
 <p>假设登录逻辑的 SQL 如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM users WHERE username = &#x27;$username&#x27; AND password = &#x27;$password&#x27;;</span><br></pre></td></tr></table></figure>
-<p>攻击者输入：用户名：<code>admin' --</code> 密码：任意值（如 <code>123</code>）</p>
+
+<p>攻击者输入：用户名：<code>admin&#39; --</code> 密码：任意值（如 <code>123</code>）</p>
 <p>最终 SQL 变为：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM users WHERE username = &#x27;admin&#x27; --&#x27; AND password = &#x27;123&#x27;;</span><br></pre></td></tr></table></figure>
-<h2 id="PreParedStatement">PreParedStatement</h2>
-<p>防止SQL注入的本质：把传递进来的参数当作字符</p>
-<h2 id="JDBC操作事务">JDBC操作事务</h2>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">conn.setAutoCommit(<span class="literal">false</span>);<span class="comment">//关闭自动提交，开启一个事务(默认执行的)</span></span><br><span class="line">statement.executeUpdate(sql1);</span><br><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>/<span class="number">0</span>;<span class="comment">//执行失败 报错</span></span><br><span class="line">statement.executeUpdate(sql2);</span><br><span class="line"></span><br><span class="line">事务执行失败，会进行回滚(sql1已经执行，但是会rollback)，可以在<span class="keyword">catch</span>中显示的定于rollback语句，但默认失败也会回滚</span><br></pre></td></tr></table></figure>
-<h2 id="数据库连接池">数据库连接池</h2>
-<p><strong>数据库连接池</strong>（Connection Pool）是一种用于管理数据库连接的技术，通过预先创建并维护一组可复用的数据库连接，减少频繁创建和销毁连接的开销，提升系统性能和资源利用率。</p>
-<h4 id="连接池配置示例（HikariCP）"><strong>连接池配置示例（HikariCP）</strong></h4>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Spring Boot 配置</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/mydb</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">hikari:</span></span><br><span class="line">      <span class="attr">connection-timeout:</span> <span class="number">3000</span>       <span class="comment"># 获取连接超时时间（ms）</span></span><br><span class="line">      <span class="attr">maximum-pool-size:</span> <span class="number">20</span>         <span class="comment"># 最大连接数</span></span><br><span class="line">      <span class="attr">minimum-idle:</span> <span class="number">5</span>               <span class="comment"># 最小空闲连接</span></span><br><span class="line">      <span class="attr">idle-timeout:</span> <span class="number">600000</span>          <span class="comment"># 空闲连接超时时间（ms）</span></span><br><span class="line">      <span class="attr">max-lifetime:</span> <span class="number">1800000</span>         <span class="comment"># 连接最大存活时间（ms）</span></span><br><span class="line">      <span class="attr">pool-name:</span> <span class="string">MyHikariPool</span>       <span class="comment"># 连接池名称（监控标识）</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="PreParedStatement"><a href="#PreParedStatement" class="headerlink" title="PreParedStatement"></a>PreParedStatement</h2><p>防止SQL注入的本质：把传递进来的参数当作字符</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//3.获取preparedStatement对象，预编译SQL语句</span></span><br><span class="line">preparedStatement = connection.prepareStatement(<span class="string">&quot;select * from users where name = ?&quot;</span>);</span><br><span class="line">preparedStatement.setString(<span class="number">1</span>,username);</span><br><span class="line"><span class="comment">//4.执行SQL语句</span></span><br><span class="line">resultSet = preparedStatement.executeQuery();</span><br></pre></td></tr></table></figure>
+
+<h2 id="JDBC操作事务"><a href="#JDBC操作事务" class="headerlink" title="JDBC操作事务"></a>JDBC操作事务</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">conn.setAutoCommit(<span class="literal">false</span>);<span class="comment">//关闭自动提交，开启一个事务(默认执行的)</span></span><br><span class="line">statement.executeUpdate(sql1);</span><br><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>/<span class="number">0</span>;<span class="comment">//执行失败 报错</span></span><br><span class="line">statement.executeUpdate(sql2);</span><br><span class="line"></span><br><span class="line">事务执行失败，会进行回滚(sql1已经执行，但是会rollback)，可以在<span class="keyword">catch</span>中显示的定于rollback语句，但默认失败也会回滚</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库连接池"><a href="#数据库连接池" class="headerlink" title="数据库连接池"></a>数据库连接池</h2><p><strong>数据库连接池</strong>（Connection Pool）是一种用于管理数据库连接的技术，通过预先创建并维护一组可复用的数据库连接，减少频繁创建和销毁连接的开销，提升系统性能和资源利用率。</p>
+<h4 id="连接池配置示例（HikariCP）"><a href="#连接池配置示例（HikariCP）" class="headerlink" title="连接池配置示例（HikariCP）"></a><strong>连接池配置示例（HikariCP）</strong></h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Spring Boot 配置</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/mydb</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">hikari:</span></span><br><span class="line">      <span class="attr">connection-timeout:</span> <span class="number">3000</span>       <span class="comment"># 获取连接超时时间（ms）</span></span><br><span class="line">      <span class="attr">maximum-pool-size:</span> <span class="number">20</span>         <span class="comment"># 最大连接数</span></span><br><span class="line">      <span class="attr">minimum-idle:</span> <span class="number">5</span>               <span class="comment"># 最小空闲连接</span></span><br><span class="line">      <span class="attr">idle-timeout:</span> <span class="number">600000</span>          <span class="comment"># 空闲连接超时时间（ms）</span></span><br><span class="line">      <span class="attr">max-lifetime:</span> <span class="number">1800000</span>         <span class="comment"># 连接最大存活时间（ms）</span></span><br><span class="line">      <span class="attr">pool-name:</span> <span class="string">MyHikariPool</span>       <span class="comment"># 连接池名称（监控标识）</span></span><br></pre></td></tr></table></figure>
+
 
         </div>
 
@@ -431,6 +429,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2025/03/12/MyBatis/">MyBatis</a>
             
             
             <a class="next" rel="next" href="/2025/01/08/JavaWeb/">JavaWeb</a>

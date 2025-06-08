@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="XiaoLong Li">
+
+
+
+
+
+<title>JVM | XL</title>
+
+
+
+    <link rel="icon" href="/2.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">XL&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">XL&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">JVM</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">XiaoLong Li</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 11, 2025&nbsp;&nbsp;10:25:35</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Java/">Java</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="JVM体系结构"><a href="#JVM体系结构" class="headerlink" title="JVM体系结构"></a>JVM体系结构</h1><h2 id="JVM结构图"><a href="#JVM结构图" class="headerlink" title="JVM结构图"></a>JVM结构图</h2><p><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/08/24/kuangstudyf7a6bd23-1a71-4c56-bd4d-d59834f33cef.jpg" alt="img"></p>
+<h2 id="JVM垃圾回收"><a href="#JVM垃圾回收" class="headerlink" title="JVM垃圾回收"></a>JVM垃圾回收</h2><p>垃圾回收指堆内存的垃圾回收。栈不会有垃圾回收机制，因为栈让如果有垃圾，栈下面的内容弹不出来，会造成堵塞</p>
+<p><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/08/24/kuangstudyc8672b81-4091-4096-a247-4aca3a5589ba.jpg" alt="img"></p>
+<h2 id="JVM调优"><a href="#JVM调优" class="headerlink" title="JVM调优"></a>JVM调优</h2><p><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/08/24/kuangstudy2e1aa511-50f8-48c6-ac42-a7d3722cb4db.jpg" alt="img"></p>
+<h1 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h1><p><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/08/24/kuangstudy6e9779ad-7881-488f-92b5-c9a7696f7b1c.jpg" alt="img"></p>
+<ol>
+<li>虚拟机自带的加载器</li>
+<li>启动类(根)加载器(BootstrapClassloader)：用C++编写，是JVM自带的类加载器；负责加载Java的核心类库。（该加载器无法直接获取）</li>
+<li>拓展类加载器（ExtClassloader）：负责加载&#x2F;jre&#x2F;lib&#x2F;ext目录下的jar包。</li>
+<li>应用程序加载器（AppClassloader）：负责加载java -classpath或-D java.class.path所指的目录下的类与jar包。（最常用的加载器）</li>
+<li>用户自定义类加载器（custom classloader）：加载<code>指定路径的class文件</code></li>
+</ol>
+<p>BootstrapClassloader——-&gt;&gt;ExtClassloader——-&gt;&gt;AppClassloader——-&gt;&gt;CustomClassloader</p>
+<h2 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h2><p>为了安全。当某个类加载器需要加载某个<code>.class</code>文件时，它首先把这个任务委托给他的上级类加载器，递归这个操作，如果上级的类加载器没有加载，自己才会去加载这个类。</p>
+<ol>
+<li>类加载器接收到一个加载请求时，他会委派给他的父加载器，实际上是去他父加载器的缓存中去查找是否有该类，如果有就加载返回，如果没有则继续委派给父类加载，直到顶层类加载器。</li>
+<li>如果顶层类加载器也没有加载该类，则会依次向下查找子加载器的加载路径，如果有就加载返回，如果都没有，则会抛出异常。</li>
+</ol>
+<h2 id="沙箱安全机制"><a href="#沙箱安全机制" class="headerlink" title="沙箱安全机制"></a>沙箱安全机制</h2><h1 id="Native-方法区"><a href="#Native-方法区" class="headerlink" title="Native  &amp; 方法区"></a>Native  &amp; 方法区</h1><p>  凡是使用了native关键字的，说明Java的作用范围已经达不到了，它会去调用底层的C语言的库。</p>
+<ol>
+<li>进入本地方法栈。</li>
+<li>调用本地方法接口。JNI</li>
+</ol>
+<p>JNI的作用：扩展Java的使用，融合不同的语言为Java所用。（最初是为了融合C、C++语言）</p>
+<p>因为Java诞生的时候，C和C++非常火，想要立足，就有必要调用C、C++的程序。</p>
+<p>所以Java在JVM内存区域专门开辟了一块标记区域Native Method Area Stack，用来登记native方法。</p>
+<p>在最终执行（执行引擎执行）的时候，通过JNI来加载本地方法库中的方法。&#x3D;-098</p>
+<p><strong>Method Area方法区</strong>（此区域属于共享区间，所有定义的方法的信息都保存在该区域）<br>方法区是被所有线程共享，所有字段、方法字节码、以及一些特殊方法（如构造函数，接口代码）也在此定义。</p>
+<p><strong>静态变量、常量、类信息（构造方法、接口定义）、运行时的常量池存在方法区中，但是实例变量存在堆内存中，和方法区无关。</strong></p>
+<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p><strong>栈是运行时的单位</strong>，线程私有，生命周期和线程同步，线程结束，栈也就会释放<strong>，不存在垃圾回收问题。</strong></p>
+<p><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/08/25/kuangstudya1f29d5c-99ea-46ff-954f-0de694823f69.jpg" alt="img"></p>
+<h2 id="存储的内容"><a href="#存储的内容" class="headerlink" title="存储的内容"></a>存储的内容</h2><p>8大基本类型、<strong>对象引用</strong>，实例的方法(每个方法在执行时都会创建一个栈帧(Stack Frame)用于存储局部变量表（形参也是局部变量）、操作数栈、动态链接、方法出口等信息)。</p>
+<h2 id="栈-堆-方法区的交互关系"><a href="#栈-堆-方法区的交互关系" class="headerlink" title="栈+堆+方法区的交互关系"></a>栈+堆+方法区的交互关系</h2><p><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/08/25/kuangstudy16832064-9e2c-4de9-8778-19c3d3b9a687.jpg" alt="img"></p>
+<h1 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h1><p><strong>堆是存储时的单位</strong>，对于绝大多数应用来说，这块区域是 JVM 所管理的<strong>内存中最大的一块</strong>。<strong>线程共享，主要是存放对象实例和数组。</strong></p>
+<p>一个JVM只有一个堆内存，堆内存的大小是可以调节的。</p>
+<p>堆内存中细分为三个区域：</p>
+<ul>
+<li>新生区（伊甸园区）Young&#x2F;New</li>
+<li>养老区 old</li>
+<li>永久区 Perm</li>
+</ul>
+<p>GC: 垃圾回收</p>
+<p><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/08/26/kuangstudycbc2c908-bf86-4263-9848-a63bfaa11fd7.jpg" alt="img"></p>
+<h2 id="新生区"><a href="#新生区" class="headerlink" title="新生区"></a>新生区</h2><p>新生区又叫做伊甸园区，包括：伊甸园区、幸存0区、幸存1区。所有对象都是在伊甸园区new出来的。是类诞生和成长的地方，甚至死亡。经过研究，99%的对象都是临时对象。</p>
+<h2 id="永久区"><a href="#永久区" class="headerlink" title="永久区"></a>永久区</h2><p>这个区域是<strong>常驻内存</strong>的。<br>用来存放JDK自身携带的Class对象、Interface元数据，存储的是Java运行时的一些环境或类信息~。<br>这个区域<strong>不存在垃圾回收</strong>。<br>关闭JVM虚拟机就会释放这个区域的内存。</p>
+<p>什么情况下，在永久区就崩了？</p>
+<ul>
+<li>一个启动类，加载了大量的第三方jar包。</li>
+<li>Tomcat部署了太多的应用。</li>
+<li>大量动态生成的反射类；不断的被加载，直到内存满，就会出现OOM</li>
+</ul>
+<h2 id="永久代和元空间"><a href="#永久代和元空间" class="headerlink" title="永久代和元空间"></a>永久代和元空间</h2><p>什么是永久代和元空间？？<br>方法区是一种规范，不同的虚拟机厂商可以基于规范做出不同的实现，永久代和元空间就是出于不同jdk版本的实现。<br>方法区就像是一个接口，永久代与元空间分别是两个不同的实现类。<br>只不过永久代是这个接口最初的实现类，后来这个接口一直进行变更，直到最后彻底废弃这个实现类，由新实现类—元空间进行替代。</p>
+<p>jdk1.8之前：<br><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/08/25/kuangstudy590e2fb9-b6fe-465c-b9fe-c6281130c20d.jpg" alt="img"></p>
+<p>jdk1.8以及之后：在堆内存中，逻辑上存在，物理上不存在（元空间使用的是本地内存）<br><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/08/25/kuangstudy39072ea5-d640-4d2c-b80a-925e0780a0fc.jpg" alt="img"></p>
+<h2 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h2><ol>
+<li>在jdk1.7之前，运行时常量池+字符串常量池是存放在方法区中，HotSpot VM对方法区的实现称为永久代。<br><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/08/25/kuangstudyfa4dab7f-9a26-4298-b00c-a4b2d4afff7e.jpg" alt="img"></li>
+<li>在jdk1.7中，字符串常量池从方法区移到堆中，运行时常量池保留在方法区中。<br><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/08/25/kuangstudyfb7f3f21-0aec-4be9-b4ed-db5c61754645.jpg" alt="img"></li>
+<li>jdk1.8之后，HotSpot移除永久代，使用元空间代替；此时字符串常量池保留在堆中，运行时常量池保留在方法区中，只是实现不一样了，JVM内存变成了直接内存。<br><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/08/25/kuangstudydcc630f0-4406-4a14-9275-af78afa6ca73.jpg" alt="img"></li>
+</ol>
+<h2 id="分析OOM原因"><a href="#分析OOM原因" class="headerlink" title="分析OOM原因"></a>分析OOM原因</h2><ol>
+<li>能够看到代码第几行出错：内存快照分析工具，MAT，JProfier</li>
+<li>Debug  一行行分析代码</li>
+</ol>
+<p>MAT JProfier作用：</p>
+<ul>
+<li>分析Dump内存文件，快速定位内存泄漏</li>
+<li>获得堆中的数据</li>
+<li>获得大的对象……………</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 获取虚拟机试图使用的最大内存</span></span><br><span class="line">        <span class="type">long</span> <span class="variable">max</span> <span class="operator">=</span> Runtime.getRuntime().maxMemory();</span><br><span class="line">        <span class="comment">// 获取jvm初始化总内存</span></span><br><span class="line">        <span class="type">long</span> <span class="variable">total</span> <span class="operator">=</span> Runtime.getRuntime().totalMemory();</span><br><span class="line">        System.out.println(<span class="string">&quot;max=&quot;</span>+max+<span class="string">&quot;字节\t&quot;</span>+(max/(<span class="type">double</span>)<span class="number">1021</span>/<span class="number">1024</span>)+<span class="string">&quot;MB\t&quot;</span>+(max/(<span class="type">double</span>)<span class="number">1021</span>/<span class="number">1024</span>/<span class="number">1024</span>)+<span class="string">&quot;GB&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;total=&quot;</span>+total+<span class="string">&quot;字节\t&quot;</span>+(total/(<span class="type">double</span>)<span class="number">1024</span>/<span class="number">1024</span>)+<span class="string">&quot;MB\t&quot;</span>+(total/(<span class="type">double</span>)<span class="number">1021</span>/<span class="number">1024</span>/<span class="number">1024</span>)+<span class="string">&quot;GB&quot;</span>);</span><br><span class="line">        <span class="comment">// 默认情况下：分配的最大内存是电脑内存的1/4；初始化的内存是电脑内存的1/64（大约）</span></span><br><span class="line">        <span class="comment">// 分析OOM：</span></span><br><span class="line">        <span class="comment">//          1.尝试扩大堆内存，看结果</span></span><br><span class="line">        <span class="comment">//          2.分析内存，看一下哪个地方出现了问题（专业工具）JProfiler</span></span><br><span class="line">        <span class="comment">// -Xms1024m -Xmx1024m -XX:+PrintGCDetails</span></span><br><span class="line">        <span class="comment">// 305664K+699392K = 1005056K   981.5M</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="GC垃圾回收"><a href="#GC垃圾回收" class="headerlink" title="GC垃圾回收"></a>GC垃圾回收</h1><p>GC回收区域是堆和方法区。大部分时候，回收都是在新生代回收。GC分为轻GC和重GC。</p>
+<h2 id="GC算法"><a href="#GC算法" class="headerlink" title="GC算法"></a>GC算法</h2><h3 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h3><p><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/08/26/kuangstudyba7e21f0-b594-4d03-a045-f0bc7999d1b9.jpg" alt="img"></p>
+<h3 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h3><p><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/08/26/kuangstudyfcf0c24d-0c57-444f-a3e7-75bf360afaa6.jpg" alt="img"></p>
+<ul>
+<li>好处：没有内存的碎片。</li>
+<li>坏处：浪费了内存空间（多了一半空间to永远是空）。假设对象100%存活（极端情况），不适合使用复制算法。</li>
+<li>复制算法最佳使用场景：对象存活度较低的时候（新生区）</li>
+</ul>
+<h3 id="GC之标记清除压缩算法"><a href="#GC之标记清除压缩算法" class="headerlink" title="GC之标记清除压缩算法"></a>GC之标记清除压缩算法</h3><p><img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/08/26/kuangstudy47e8d6fc-3f99-4296-b75e-608518e1403f.jpg" alt="img"></p>
+<p><strong>标记清除压缩（改进）：</strong>可以进行多次标记清除，再进行一次压缩。</p>
+<h1 id="JMM：Java-Memory-Model"><a href="#JMM：Java-Memory-Model" class="headerlink" title="JMM：Java Memory Model"></a>JMM：Java Memory Model</h1><p>Java内存模型</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>缓存一致性的协议，用来定义数据读写的规则。</p>
+<p>JMM定义了<strong>线程工作内存</strong>和主内存的抽象关系：<strong>线程的共享变量</strong>存储在主内存中，<strong>每个线程</strong>都有一个<strong>私有的本地工作内存</strong>。</p>
+<p>使用<strong>volatile关键字</strong>来<strong>解决共享变量的可见性</strong>的问题。</p>
+<p>Java内存模型是围绕着并发编程中<strong>原子性、可见性、有序性</strong>这三个特征来建立的。</p>
+<p> <img src="https://kuangstudy.oss-cn-beijing.aliyuncs.com/bbs/2022/03/05/kuangstudy14fa390b-435b-4b9f-8dc6-29e685e26172.jpg" alt="img"></p>
+<h2 id="JMM定义了8种操作来完成（每一种操作都是原子的、不可再拆分的）。"><a href="#JMM定义了8种操作来完成（每一种操作都是原子的、不可再拆分的）。" class="headerlink" title="JMM定义了8种操作来完成（每一种操作都是原子的、不可再拆分的）。"></a>JMM定义了8种操作来完成（每一种操作都是原子的、不可再拆分的）。</h2><ul>
+<li>lock（锁定）：作用于主内存的变量，它把一个变量标识为一条线程独占的状态。</li>
+<li>unlock（解锁）：作用于主内存的变量，它把一个处于锁定状态的变量释放出来，释放后的变量才可以被其他线程锁定。</li>
+<li>read（读取）：作用于主内存的变量，它把一个变量的值从主内存传输到线程的工作内存中，以便随后的load动作使用。</li>
+<li>load（载入）：作用于工作内存的变量，它把read操作从主内存中得到的变量值放入工作内存的变量副本中。</li>
+<li>use（使用）：作用于工作内存的变量，它把工作内存中一个变量的值传递给执行引擎（每当虚拟机遇到一个需要使用到该变量的值的字节码指令时将会执行这个操作）。</li>
+<li>assign（赋值）：作用于工作内存的变量，它把一个从执行引擎接收到的值赋给工作内存的变量（每当虚拟机遇到一个给该变量赋值的字节码指令时执行这个操作）。</li>
+<li>store（存储）：作用于工作内存的变量，它把工作内存中一个变量的值传送到主内存中，以便随后的write操作使用。</li>
+<li>write（写入）：作用于主内存的变量，它把store操作从工作内存中得到的变量的值放入主内存的变量中。</li>
+</ul>
+<h2 id="8种操作必须满足的规则："><a href="#8种操作必须满足的规则：" class="headerlink" title="8种操作必须满足的规则："></a>8种操作必须满足的规则：</h2><ul>
+<li>不允许read和load、store和write操作之一单独出现。（不允许一个变量从主内存读取了但工作内存不接受；或者从工作内存发起回写了但主内存不接受的情况出现）</li>
+<li>不允许一个线程丢弃它的最近的assign操作。（变量在工作内存中改变了值之后，必须把该变化同步回主内存）</li>
+<li>不允许一个线程无原因地（没有发生过任何assign操作）把数据从线程的工作内存同步回主内存。</li>
+<li>一个新的变量只能在主内存中“诞生”，不允许在工作内存中直接使用一个未被初始化（load或assign）的变量。（就是对一个变量实施use、store操作之前，必须先执行过了load和assign操作）</li>
+<li>一个变量在同一时刻只允许一条线程对其进行lock操作，但lock操作可以被同一条线程重复执行多次，多次执行lock后，只有执行相同次数的unlock操作，变量才会被解锁。</li>
+<li>如果对一个变量执行lock操作，那将会清空工作内存中此变量的值，在执行引擎使用这个变量前，需要重新执行load或assign操作初始化变量的值。</li>
+<li>如果一个变量事先没有被lock操作锁定，那就不允许对它执行unlock操作，也不允许去unlock一个被其他线程锁定住的变量。</li>
+<li>对一个变量执行unlock操作之前，必须先把此变量同步回主内存中（执行store、write操作）。</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>栈存哪些东西？具体怎么存？</li>
+<li>画出一个对象在内存中实例化的过程？</li>
+<li>JVM的内存模型和分区~详细到每个区放什么？</li>
+<li>堆里面的分区有哪些？Eden，form，to，老年区，说说他们的特点！</li>
+<li>GC的算法有哪些？标记清除法，标记压缩，复制算法，引用计数器，怎么用的？</li>
+<li>轻GC和重GC分别在什么时候发生？</li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>XiaoLong Li</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2025/04/11/JVM/">http://example.com/2025/04/11/JVM/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Java/"># Java</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2025/04/13/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">JUC并发编程</a>
+            
+            
+            <a class="next" rel="next" href="/2025/04/01/SpringCloud/">SpringCloud</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© XiaoLong Li | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
